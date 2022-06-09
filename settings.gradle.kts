@@ -1,4 +1,4 @@
-rootProject.name = "fabrikmc"
+rootProject.name = "smp"
 
 pluginManagement {
     repositories {

@@ -7,8 +7,8 @@ plugins {
     id("org.quiltmc.quilt-mappings-on-loom") version "4.2.0"
 }
 
-group = "net.fabricmc.example"
-version = "1.0-SNAPSHOT"
+group = "de.dasphiller.smp"
+version = "1.19"
 
 repositories {
     mavenCentral()
