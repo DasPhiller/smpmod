@@ -1,10 +1,12 @@
 package de.dasphiller.smp.gui
 
+import net.axay.fabrik.core.Fabrik
 import net.axay.fabrik.core.item.itemStack
 import net.axay.fabrik.core.item.setCustomName
 import net.axay.fabrik.core.text.literalText
 import net.axay.fabrik.core.text.sendText
 import net.axay.fabrik.igui.*
+import net.minecraft.server.MinecraftServer
 import net.minecraft.world.item.Items
 
 fun adminGui(): Gui {
@@ -47,30 +49,31 @@ fun adminGui(): Gui {
             button((3 sl 2), itemStack(Items.PAPER) {
                 setCustomName {
                     text("Toggle Whitelist") {
-                        color = 0x5fdf5f
-                        bold = true
-                        italic = false
-                    }
+                    val server = Fabrik.currentServer
+                    color = if (server?.playerList!!.isUsingWhitelist) 0x19bb03 else 0xb30003
+                    bold = true
+                    italic = false
                 }
-            }.guiIcon) {
-                if (it.player.server!!.playerList.isUsingWhitelist) {
-                    it.player.server!!.playerList.setUsingWhiteList(false)
-                    it.player.sendText {
-                        text("Die Whitelist wurde deaktiviert") {
-                            color = 0xe64043//e64043
-                            italic = true
-                        }
-                    }
-                } else {
-                    it.player.server!!.playerList.setUsingWhiteList(true)
-                    it.player.sendText {
-                        text("Die Whitelist wurde aktiviert") {
-                            color = 0x357836
-                            italic = true
-                        }
-                    }
+            }
+        }.guiIcon) {
+        if (it.player.server!!.playerList.isUsingWhitelist) {
+            it.player.server!!.playerList.setUsingWhiteList(false)
+            it.player.sendText {
+                text("Die Whitelist wurde deaktiviert") {
+                    color = 0xb30003//e64043
+                    italic = true
+                }
+            }
+        } else {
+            it.player.server!!.playerList.setUsingWhiteList(true)
+            it.player.sendText {
+                text("Die Whitelist wurde aktiviert") {
+                    color = 0x19bb03
+                    italic = true
                 }
             }
         }
     }
+    }
+}
 }
