@@ -87,6 +87,17 @@ fun adminGui(): Gui {
                 }
             }.guiIcon) {
                 val server = Fabrik.currentServer
+                server?.playerList?.players?.forEach {
+                    it.connection.disconnect(literalText {
+                        text("Du wurdest gekickt! Grund:") {
+                            color = 0xb30003
+                        }
+                        emptyLine()
+                        text("Der Server stoppt nun") {
+                            color = 0xb30003
+                        }
+                    })
+                }
                 server?.stopServer()
             }
         }
