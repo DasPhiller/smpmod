@@ -82,6 +82,7 @@ fun adminGui(): Gui {
                     text("Stop Server") {
                         color = 0xb30003
                         italic = false
+                        bold = true
                     }
                 }
             }.guiIcon) {
