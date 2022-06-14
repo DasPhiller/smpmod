@@ -5,6 +5,7 @@ import net.axay.fabrik.core.Fabrik
 import net.axay.fabrik.core.item.itemStack
 import net.axay.fabrik.core.item.setCustomName
 import net.axay.fabrik.core.item.setLore
+import net.axay.fabrik.core.text.literal
 import net.axay.fabrik.core.text.literalText
 import net.axay.fabrik.core.text.sendText
 import net.axay.fabrik.igui.*
@@ -47,6 +48,10 @@ fun adminGui(): Gui {
                         bold = true
                         italic = false
                     }
+                    setLore(listOf(literalText("description") {
+                        italic = false
+                        color = 0xb30003
+                    }))
                 }
             }.guiIcon, 2)
             button((3 sl 2), itemStack(Items.PAPER) {
@@ -57,6 +62,10 @@ fun adminGui(): Gui {
                         bold = true
                         italic = false
                     }
+                    setLore(listOf(literalText("description") {
+                        italic = false
+                        color = 0xb30003
+                    }))
                 }
             }.guiIcon) {
                 if (it.player.server!!.playerList.isUsingWhitelist) {
@@ -85,6 +94,10 @@ fun adminGui(): Gui {
                         bold = true
                     }
                 }
+                setLore(listOf(literalText("description") {
+                    italic = false
+                    color = 0xb30003
+                }))
             }.guiIcon) {
                 val server = Fabrik.currentServer
                 server?.playerList?.players?.forEach {
