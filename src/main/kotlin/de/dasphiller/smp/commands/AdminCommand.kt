@@ -2,6 +2,7 @@ package de.dasphiller.smp.commands
 
 import de.dasphiller.smp.gui.adminGui
 import net.axay.fabrik.commands.command
+import net.axay.fabrik.core.Fabrik
 import net.axay.fabrik.core.text.literal
 import net.axay.fabrik.core.text.literalText
 import net.axay.fabrik.game.sideboard.showSideboard
