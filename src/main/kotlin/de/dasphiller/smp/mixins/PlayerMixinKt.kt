@@ -11,7 +11,7 @@ import net.minecraft.server.players.PlayerList
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo
 
 object PlayerMixinKt {
-    fun onPlaceNewPlayer(instance: PlayerList, message: Component, messageType: ResourceKey<ChatType>) {
-        broadcast("test")
+    fun onPlaceNewPlayer(instance: PlayerList) {
+        broadcast("Willkommen ")
     }
 }

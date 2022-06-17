@@ -14,10 +14,12 @@ fun init() {
 
 fun broadcast(text: String, messageColor: Int = 0xffffff, italic: Boolean = false, bold: Boolean = false) {
     Fabrik.currentServer?.playerList?.players?.forEach {
-        it.sendText(text) {
-            color = messageColor
-            this.italic = italic
-            this.bold = bold
+        it.sendText {
+            text(text) {
+                color = messageColor
+                this.italic = italic
+                this.bold = bold
+            }
         }
     }
 }
