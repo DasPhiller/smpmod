@@ -9,7 +9,7 @@
   "mixins": [
   ],
   "client": [
-    "ExampleMixin"
+    "MainMixin"
   ],
   "injectors": {
     "defaultRequire": 1

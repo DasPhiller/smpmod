@@ -1,17 +1,19 @@
 package de.dasphiller.smp.gui
 
-import com.mojang.authlib.GameProfile
 import net.axay.fabrik.core.Fabrik
 import net.axay.fabrik.core.item.itemStack
 import net.axay.fabrik.core.item.setCustomName
 import net.axay.fabrik.core.item.setLore
-import net.axay.fabrik.core.text.literal
 import net.axay.fabrik.core.text.literalText
 import net.axay.fabrik.core.text.sendText
 import net.axay.fabrik.igui.*
-import net.minecraft.network.chat.Component
+import net.axay.fabrik.igui.observable.toGuiList
+import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items
-import java.util.*
+
+val items = arrayListOf<ItemStack>(
+    itemStack(Items.LIGHT) { count = 64 },
+)
 
 fun adminGui(): Gui {
     return igui(GuiType.NINE_BY_FIVE, literalText {
@@ -34,6 +36,12 @@ fun adminGui(): Gui {
                     }
                 }
             }.guiIcon, 3)
+            changePageByKey((2 sl 5), itemStack(Items.STRUCTURE_VOID) {
+                setCustomName("Items") {
+                    bold = true
+                    italic = false
+                }
+            }.guiIcon, 1)
         }
         page(3) {
             effectFrom = GuiPage.ChangeEffect.SLIDE_VERTICALLY
@@ -41,19 +49,7 @@ fun adminGui(): Gui {
             placeholder(Slots.All, itemStack(Items.GRAY_STAINED_GLASS_PANE) {
                 setCustomName("")
             }.guiIcon)
-            changePageByKey((1 sl 1), itemStack(Items.DARK_OAK_DOOR) {
-                setCustomName {
-                    text("Hauptmenü") {
-                        color = 0x6fa8dc
-                        bold = true
-                        italic = false
-                    }
-                    setLore(listOf(literalText("description") {
-                        italic = false
-                        color = 0xb30003
-                    }))
-                }
-            }.guiIcon, 2)
+            goBack(this)
             button((3 sl 2), itemStack(Items.PAPER) {
                 setCustomName {
                     text("Toggle Whitelist") {
@@ -114,5 +110,36 @@ fun adminGui(): Gui {
                 server?.stopServer()
             }
         }
+        page(1) {
+            effectFrom = GuiPage.ChangeEffect.SLIDE_VERTICALLY
+            effectTo = GuiPage.ChangeEffect.SLIDE_VERTICALLY
+            placeholder(Slots.Border, itemStack(Items.GRAY_STAINED_GLASS_PANE) {
+                setCustomName("")
+            }.guiIcon)
+            val compound = compound(
+                (4 sl 2) rectTo (2 sl 8), items.toGuiList(), iconGenerator = {
+                    itemStack(it.item) {}
+                }, onClick = { event, element ->
+                    event.player.inventory.add(element)
+                }
+            )
+            goBack(this)
+        }
     }
+}
+
+fun goBack(builder: GuiBuilder.PageBuilder) {
+    builder.changePageByKey((1 sl 1), itemStack(Items.DARK_OAK_DOOR) {
+        setCustomName {
+            text("Hauptmenü") {
+                color = 0x6fa8dc
+                bold = true
+                italic = false
+            }
+            setLore(listOf(literalText("description") {
+                italic = false
+                color = 0xb30003
+            }))
+        }
+    }.guiIcon, 2)
 }

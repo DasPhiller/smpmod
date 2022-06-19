@@ -21,7 +21,7 @@ dependencies {
         officialMojangMappings()
     })
     modImplementation("net.fabricmc:fabric-loader:0.14.8")
-    modImplementation("net.fabricmc.fabric-api:fabric-api:0.55.3+1.19")
+    modImplementation("net.fabricmc.fabric-api:fabric-api:0.56.0+1.19")
     modImplementation("net.fabricmc:fabric-language-kotlin:1.8.0+kotlin.1.7.0")
     modImplementation("net.axay:fabrikmc-core:1.8.1")
     modImplementation("net.axay:fabrikmc-commands:1.8.1")

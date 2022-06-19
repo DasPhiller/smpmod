@@ -1,16 +1,10 @@
 package de.dasphiller.smp.mixin.entity;
 
-import de.dasphiller.smp.MainKt;
-import de.dasphiller.smp.mixins.PlayerMixinKt;
 import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.players.PlayerList;
-import org.checkerframework.checker.units.qual.A;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.gen.Accessor;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
@@ -27,7 +21,7 @@ public class PlayerConnectionMixin {
     public void onBroadCast(PlayerList instance, Component message, ResourceKey<ChatType> messageType) {
         //just redirecting because I want an empty message here
     }
-    }
+}
 
 
 
